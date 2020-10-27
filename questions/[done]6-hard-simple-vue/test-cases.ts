@@ -44,9 +44,9 @@ type ToReturnType<T> = {
 }
 
 type Options<T, U, P> = {
-  data: () => T,
+  data: (this: {}) => T,
   computed: U & ThisType<T & ToReturnType<U> & P>,
   methods: P & ThisType<T & ToReturnType<U> & P>
-} & ThisType<{}>
+}
 
 declare function SimpleVue<T, U, P>(options: Options<T, U, P>): any
