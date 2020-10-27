@@ -19,3 +19,11 @@ interface Expected1 {
 interface Expected2 {
   title: string
 }
+
+// answer
+
+type MyExtract<T, U> = T extends U ? never : T;
+
+type MyOmit<T, U extends keyof T> = {
+  [K in MyExtract<keyof T, U>]: T[K]
+}

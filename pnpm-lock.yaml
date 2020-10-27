@@ -72,7 +72,7 @@ importers:
       typescript: 4.0.2
     specifiers:
       typescript: ^4.0.2
-lockfileVersion: 5.1
+lockfileVersion: 5.2
 packages:
   /@actions/core/1.2.5:
     dev: false
