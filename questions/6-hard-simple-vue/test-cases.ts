@@ -26,8 +26,8 @@ SimpleVue({
       return Math.random()
     },
     hi() {
-      alert(this.fullname.toLowerCase())
-      alert(this.getRandom())
+      this.fullname.toLowerCase()
+      this.getRandom()
     },
     test() {
       const fullname = this.fullname
@@ -37,3 +37,16 @@ SimpleVue({
     },
   },
 })
+
+// answer
+type ToReturnType<T> = {
+  [K in keyof T]: T[K] extends (...args: any[]) => infer U ? U : any;
+}
+
+type Options<T, U, P> = {
+  data: () => T,
+  computed: U & ThisType<T & ToReturnType<U> & P>,
+  methods: P & ThisType<T & ToReturnType<U> & P>
+} & ThisType<{}>
+
+declare function SimpleVue<T, U, P>(options: Options<T, U, P>): any
