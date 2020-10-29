@@ -4,3 +4,6 @@ type cases = [
   Expect<Equal<TupleToUnion<[123, '456', true]>, 123 | '456' | true>>,
   Expect<Equal<TupleToUnion<[123]>, 123>>,
 ]
+
+// answer
+type TupleToUnion<T extends any[]> = T[number]
