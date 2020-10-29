@@ -6,3 +6,7 @@ type cases = [
   Expect<Equal<First<[]>, never>>,
   Expect<Equal<First<[undefined]>, undefined>>
 ]
+
+// answer
+
+type First<T extends any[]> = T extends [infer U, ...infer _] ? U : never;
