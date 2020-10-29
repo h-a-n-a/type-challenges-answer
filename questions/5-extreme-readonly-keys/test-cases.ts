@@ -18,3 +18,11 @@ interface Todo2 {
 }
 
 // answer
+
+type t = Readonly<Todo2>
+
+type UnReadonly<T> = {
+  -readonly [K in keyof T]: T[K]
+}
+
+// type GetReadonlyKeys<T> = 

@@ -1,4 +1,4 @@
-import { Alike, Expect } from '@type-challenges/utils'
+import { Alike, Expect, MergeInsertions } from '@type-challenges/utils'
 
 type cases = [
   Expect<Alike<MyReadonly2<Todo1>, Readonly<Todo1>>>,
@@ -16,3 +16,13 @@ interface Expected {
   readonly description?: string
   completed: boolean
 }
+
+// answer
+
+type MyReadonly2<T, U extends keyof T = keyof T> = {
+  readonly [K in U]: T[K]
+} & {
+  [K in keyof T]: T[K] // copy original readonlys
+}
+
+type Test = MyReadonly2<Todo1, 'title' | 'description'>
