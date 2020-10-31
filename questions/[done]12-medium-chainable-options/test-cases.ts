@@ -23,6 +23,6 @@ type Expected = {
 // answer
 
 type Chainable<T = {}> = {
-  option<A extends string, B>(key: A, value: B): Chainable<{ [K in A]: B } & T>
+  option<KEY extends string, VALUE>(key: KEY, value: VALUE): Chainable<{ [K in KEY]: VALUE } & T>
   get(): T
 }
