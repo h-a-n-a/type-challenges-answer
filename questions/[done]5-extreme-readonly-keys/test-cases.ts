@@ -19,10 +19,6 @@ interface Todo2 {
 
 // answer
 
-type t = Readonly<Todo2>
-
-type UnReadonly<T> = {
-  -readonly [K in keyof T]: T[K]
-}
-
-// type GetReadonlyKeys<T> = 
+type GetReadonlyKeys<T> = {
+  [K in keyof T]: Equal<Pick<T, K>, { -readonly [Key in K]: T[Key] }> extends true ? never : K;
+}[keyof T]
