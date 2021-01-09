@@ -140,7 +140,7 @@ const action: Action = async(github, context, core) => {
         files,
         commit: `feat(question): add #${no} - ${info.title}`,
         author: {
-          name: user.name,
+          name: user.name || user.login,
           email: userEmail,
         },
       },
@@ -180,6 +180,13 @@ const action: Action = async(github, context, core) => {
         head: `pulls/${no}`,
         title: `#${no} - ${info.title}`,
         body: `This is an auto-generated PR that auto reflect on #${no}, please go to #${no} for discussion or making changes.\n\nCloses #${no}`,
+        labels: ['auto-generated'],
+      })
+
+      await github.issues.addLabels({
+        owner: context.repo.owner,
+        repo: context.repo.repo,
+        issue_number: pr.number,
         labels: ['auto-generated'],
       })
 

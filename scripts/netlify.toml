@@ -1,7 +1,15 @@
 [build]
   ignore = "git diff --quiet HEAD^ HEAD .."
 
+[build.environment]
+  NPM_FLAGS = "--prefix=/dev/null"
+
 [[redirects]]
   from = "/"
   to = "/index.html"
   status = 200
+
+[[headers]]
+  for = "/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
