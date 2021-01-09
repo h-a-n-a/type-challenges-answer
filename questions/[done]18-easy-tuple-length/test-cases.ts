@@ -7,3 +7,7 @@ type cases = [
   Expect<Equal<Length<typeof tesla>, 4>>,
   Expect<Equal<Length<typeof spaceX>, 5>>,
 ]
+
+// answer
+
+type Length<T extends ReadonlyArray<any>> = T['length']
