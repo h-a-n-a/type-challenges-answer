@@ -13,3 +13,14 @@ type cases = [
   Expect<Equal<CamelCase<''>, ''>>,
   Expect<Equal<CamelCase<'😎'>, '😎'>>,
 ]
+
+// answer
+
+type CamelCase<T extends string> =
+    T extends `${infer _}-${infer P}` ?
+      `${_}${CamelCase<Capitalize<P>> extends "" ?
+          "-" :
+            CamelCase<Capitalize<P>> extends CamelCase<P> ?
+              `-${CamelCase<P>}` :
+            CamelCase<Capitalize<P>>}` :
+    T
