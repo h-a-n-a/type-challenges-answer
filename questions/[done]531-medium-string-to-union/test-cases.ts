@@ -11,4 +11,6 @@ type cases = [
 
 type Helper<T extends string> = T extends "" ? [never] : T extends `${infer U}${infer P}` ? [U, ...Helper<P>] : [never]
 
-type StrintToUnion<T extends string> = Helper<T>[number];
+// type StrintToUnion<T extends string> = Helper<T>[number];
+
+type StrintToUnion<T extends string> = T extends `${infer U}${infer P}` ? U | StrintToUnion<P> : never;
