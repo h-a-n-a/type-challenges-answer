@@ -18,3 +18,31 @@ type Data = {
   },
   hello: 'world'
 }
+
+
+// answer
+
+type ParseLeft<T> = 
+  T extends `${infer U}${infer P}` ? 
+    U extends "" | "." ? 
+      "" :
+    `${U}${ParseLeft<P>}` :
+  T;
+
+type ParseRawRight<Right> = 
+  Right extends `${infer RightLeft}${infer RightRight}` ? 
+    RightLeft extends "." ?
+      RightRight :
+    null :
+  null;
+  
+
+type ParseRight<T, Left extends string> = 
+  T extends `${Left}${infer Right}` ? 
+    ParseRawRight<Right> :
+  null;
+
+type ParseValue<T extends object, K extends string> = T[ParseLeft<K>]
+
+// type Get<T extends object, K extends string> = 
+  
